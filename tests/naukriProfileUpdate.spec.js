@@ -4,7 +4,8 @@ require('dotenv').config();
 
 const email = process.env.NAUKRI_EMAIL;
 const password = process.env.NAUKRI_PASSWORD;
-
+const resumeHeadlineWords = process.env.RESUME_HEADLINE_001;
+const resumeHeadlineWords1 = process.env.RESUME_HEADLINE_002;
 
 async function loginToNaukri(page) {
 
@@ -146,8 +147,8 @@ test.describe('Update Profile in Naukri', () => {
     const textarea = page.locator('#resumeHeadlineTxt')
     await textarea.click()
     console.log("Resume Headline textarea is now in the editable form");
-    var resumeHeadlineWords = 'Senior QA Analyst with 14 years of experience in Functional Testing. Have worked in web application testing, automation using Cypress/Playwright with BDD framework,manual testing, regression testing, API testing and Teamcity for cicd process.'
-    var resumeHeadlineWords1 = 'Senior QA Analyst with 14 years of experience in Functional Testing. Have worked in automation using Cypress/Playwright with BDD framework,manual testing, regression testing, API testing and Teamcity for cicd process.'
+    //var resumeHeadlineWords = 'Senior QA Analyst with 14 years of experience in Functional Testing. Have worked in web application testing, automation using Cypress/Playwright with BDD framework,manual testing, regression testing, API testing and Teamcity for cicd process.'
+    //var resumeHeadlineWords1 = 'Senior QA Analyst with 14 years of experience in Functional Testing. Have worked in automation using Cypress/Playwright with BDD framework,manual testing, regression testing, API testing and Teamcity for cicd process.'
     const value = await textarea.inputValue();
     if (value === resumeHeadlineWords) {
        console.log("Words before update: " + value)
