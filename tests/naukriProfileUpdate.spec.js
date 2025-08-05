@@ -33,8 +33,12 @@ test.describe('Update Profile in Naukri', () => {
 
   test.beforeEach(async ({ page }) => {
 
-    await page.goto('https://www.naukri.com/')
+   // await page.goto('https://www.naukri.com/')
+    
+await page.goto('https://www.naukri.com/', { waitUntil: 'load', timeout: 60000 });
+
     //click on the login button
+    
     await page.locator('#login_Layer').click()
   })
 
