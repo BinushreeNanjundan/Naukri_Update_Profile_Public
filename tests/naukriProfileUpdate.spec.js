@@ -108,7 +108,7 @@ test.describe('Update Profile in Naukri', () => {
 
   })
 
-  test.only('TC003 - Home Page - Click Drawer Icon and click View & Update profile', async ({ page }) => {
+  test('TC003 - Home Page - Click Drawer Icon and click View & Update profile', async ({ page }) => {
     console.log("Testcase 3 is starting");
 
     //call the login function created 
