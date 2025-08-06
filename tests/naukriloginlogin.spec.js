@@ -1,4 +1,6 @@
-import { test, expect, chromium } from '@playwright/test';
+import { test, expect } from '@playwright/test';
+import { chromium } from '@playwright/test';
+
 //require('dotenv').config();
 
 let browser, context, page;
@@ -16,13 +18,13 @@ async function loginToNaukri(page) {
 
 test.describe('Update Profile in Naukri', () => {
     test.beforeEach(async () => {
-        browser = await chromium.launch({ headless: true });
-        context = await browser.newContext();
+        browser = await chromium.launch();
+        context = await browser.newContext()
         page = await context.newPage();
-        await page.goto('https://login.naukri.com/nLogin/Login.php', { waitUntil: 'load', timeout: 30000 });
+        await page.goto('https://login.naukri.com/nLogin/Login.php', { waitUntil: 'load', timeout: 60000 });
         console.log("luanched url naukri login page")
-        const currentUrl = page.url();
-        console.log("Current URL:", currentUrl);
+        await page.screenshot({ path: 'beforeeach-login-page.png' }); // <-- Screenshot added here
+
 
     });
 
@@ -32,6 +34,8 @@ test.describe('Update Profile in Naukri', () => {
 
     test('TC001 - Login Page - Verify if the login fields are visible', async () => {
         console.log("Testcase 1 is starting");
+          const currentUrl = page.url();
+        console.log("Current URL:", currentUrl);
         //await expect(page.locator('.lbl', { hasText: 'Email ID / Username' })).toBeVisible();
         await expect(page.locator('#usernameField')).toBeVisible();
         // await expect(page.locator('.lbl', { hasText: 'Password' })).toBeVisible();
@@ -41,6 +45,8 @@ test.describe('Update Profile in Naukri', () => {
 
     test('TC002 - Login Page - Fill in fields and click on the Login button', async () => {
         await loginToNaukri(page);
+        const currentUrl = page.url();
+        console.log("Current URL:", currentUrl);
         const viewProfileEle = page.locator('.view-profile-wrapper');
         await viewProfileEle.waitFor({ state: 'visible', timeout: 10000 });
         const viewProfileisVisible = await viewProfileEle.isVisible();
