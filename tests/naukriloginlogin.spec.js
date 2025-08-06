@@ -12,8 +12,11 @@ async function loginToNaukri(page) {
     const passwordField = page.locator('#passwordField');
     const loginButton = page.locator('.waves-effect.waves-light.btn-large.btn-block.btn-bold.blue-btn.textTransform');
     await page.locator('#usernameField').fill(email);
+    console.log('email id is filled')
     await page.locator('#passwordField').fill(password);
+    console.log('password id is filled')
     await page.locator('.waves-effect.waves-light.btn-large.btn-block.btn-bold.blue-btn.textTransform').click();
+    console.log('logged  in successfully')
 }
 
 test.describe('Update Profile in Naukri', () => {
@@ -47,7 +50,7 @@ test.describe('Update Profile in Naukri', () => {
         await loginToNaukri(page);
         const currentUrl = page.url();
         console.log("Current URL:", currentUrl);
-        const viewProfileEle = page.locator('.view-profile-wrapper');
+        const viewProfileEle = page.locator('.view-profile-wrapper',{ waitUntil:'load', timeout:40000});
         await viewProfileEle.waitFor({ state: 'visible', timeout: 10000 });
         const viewProfileisVisible = await viewProfileEle.isVisible();
         console.log("Profile is visible " + viewProfileisVisible);
