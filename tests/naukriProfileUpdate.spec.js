@@ -35,11 +35,14 @@ test.describe('Update Profile in Naukri', () => {
 
    // await page.goto('https://www.naukri.com/')
     
-await page.goto('https://www.naukri.com/', { waitUntil: 'load', timeout: 60000 });
+await page.goto('https://www.naukri.com/', { waitUntil: 'load', timeout: 30000 });
 
     //click on the login button
     //await page.getByText('Login').click()
-    await page.locator('#login_Layer').click()
+   const login_button =  await page.locator('#login_Layer')
+   await login_button.waitFor({ state: 'visible', timeout: 10000 })
+   await login_button.click()
+    console.log('Login button is clicked');
   })
 
 
@@ -178,6 +181,15 @@ await page.goto('https://www.naukri.com/', { waitUntil: 'load', timeout: 60000 }
 
     await viewQuickLinks.waitFor({ state: 'visible', timeout: 10000 })
     console.log("Quick Link is visible");
+
+    //logout
+    await drawericon.waitFor({ state: 'visible', timeout: 10000 })
+    await drawericon.click()
+    const logoutButton = page.getByText('Logout') 
+    await logoutButton.waitFor({ state: 'visible', timeout: 10000 })
+    await logoutButton.click()
+    console.log("Logged out successfully");
+    
   })
 
 
