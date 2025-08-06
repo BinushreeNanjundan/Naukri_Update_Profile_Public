@@ -10,7 +10,7 @@ const resumeHeadlineWords1 = process.env.RESUME_HEADLINE_002;
 async function loginToNaukri(page) {
   console.log("Login to Naukri function");
   await page.locator("[type='text'][placeholder='Enter your active Email ID / Username']").fill(email)
-  console.log('email id is filled')
+  console.log('email id is filled:' + email)
   //fill the password input field
   await page.locator("[placeholder='Enter your password']").fill(password)
   console.log('password is filled')
@@ -84,7 +84,7 @@ test.describe('Update Profile in Naukri', () => {
 
     //View Profile is visible successful
     const viewProfileEle = page.locator('.view-profile-wrapper')
-    await viewProfileEle.waitFor({ state: 'visible', timeout: 10000 }) //wait till the page loads
+    await viewProfileEle.waitFor({ state: 'visible', timeout: 50000 }) //wait till the page loads
     const viewProfileisVisible = await viewProfileEle.isVisible();
     console.log("Profile is visible " + viewProfileisVisible);
 
