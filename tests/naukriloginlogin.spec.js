@@ -1,69 +1,69 @@
-import { test, expect } from '@playwright/test';
-import { chromium } from '@playwright/test';
+// import { test, expect } from '@playwright/test';
+// import { chromium } from '@playwright/test';
 
-//require('dotenv').config();
+// //require('dotenv').config();
 
-let browser, context, page;
-const email = process.env.NAUKRI_EMAIL;
-const password = process.env.NAUKRI_PASSWORD
+// let browser, context, page;
+// const email = process.env.NAUKRI_EMAIL;
+// const password = process.env.NAUKRI_PASSWORD
 
-async function loginToNaukri(page) {
-     const usernameField = page.locator('#usernameField');
-    const passwordField = page.locator('#passwordField');
-    const loginButton = page.locator('.waves-effect.waves-light.btn-large.btn-block.btn-bold.blue-btn.textTransform');
-    await page.locator('#usernameField').fill(email);
-    console.log('email id is filled')
-    await page.locator('#passwordField').fill(password);
-    console.log('password id is filled')
-    await page.locator('.waves-effect.waves-light.btn-large.btn-block.btn-bold.blue-btn.textTransform').click();
-    console.log('logged  in successfully')
-}
+// async function loginToNaukri(page) {
+//      const usernameField = page.locator('#usernameField');
+//     const passwordField = page.locator('#passwordField');
+//     const loginButton = page.locator('.waves-effect.waves-light.btn-large.btn-block.btn-bold.blue-btn.textTransform');
+//     await page.locator('#usernameField').fill(email);
+//     console.log('email id is filled')
+//     await page.locator('#passwordField').fill(password);
+//     console.log('password id is filled')
+//     await page.locator('.waves-effect.waves-light.btn-large.btn-block.btn-bold.blue-btn.textTransform').click();
+//     console.log('logged  in successfully')
+// }
 
-test.describe('Update Profile in Naukri', () => {
-    test.beforeEach(async () => {
-        browser = await chromium.launch();
-        context = await browser.newContext()
-        page = await context.newPage();
-        await page.goto('https://login.naukri.com/nLogin/Login.php', { waitUntil: 'load', timeout: 60000 });
-        console.log("luanched url naukri login page")
-        await page.screenshot({ path: 'beforeeach-login-page.png' }); // <-- Screenshot added here
+// test.describe('Update Profile in Naukri', () => {
+//     test.beforeEach(async () => {
+//         browser = await chromium.launch();
+//         context = await browser.newContext()
+//         page = await context.newPage();
+//         await page.goto('https://login.naukri.com/nLogin/Login.php', { waitUntil: 'load', timeout: 60000 });
+//         console.log("luanched url naukri login page")
+//         await page.screenshot({ path: 'beforeeach-login-page.png' }); // <-- Screenshot added here
 
 
-    });
+//     });
 
-    test.afterAll(async () => {
-        await browser.close();
-    });
+//     test.afterAll(async () => {
+//         await browser.close();
+//     });
 
-    test('TC001 - Login Page - Verify if the login fields are visible', async () => {
-        console.log("Testcase 1 is starting");
-          const currentUrl = page.url();
-        console.log("Current URL:", currentUrl);
-        //await expect(page.locator('.lbl', { hasText: 'Email ID / Username' })).toBeVisible();
-       const usernamefield = await expect(page.locator('#usernameField')).toBeVisible();
-       console.log("User name field is visible: "+usernamefield);
+//     test('TC001 - Login Page - Verify if the login fields are visible', async () => {
+//         console.log("Testcase 1 is starting");
+//           const currentUrl = page.url();
+//         console.log("Current URL:", currentUrl);
+//         //await expect(page.locator('.lbl', { hasText: 'Email ID / Username' })).toBeVisible();
+//        const usernamefield = await expect(page.locator('#usernameField')).toBeVisible();
+//        console.log("User name field is visible: "+usernamefield);
        
-        // await expect(page.locator('.lbl', { hasText: 'Password' })).toBeVisible();
-        const passwordfield = await expect(page.locator('#passwordField')).toBeVisible();
-               console.log("password field is visible: "+passwordfield);
+//         // await expect(page.locator('.lbl', { hasText: 'Password' })).toBeVisible();
+//         const passwordfield = await expect(page.locator('#passwordField')).toBeVisible();
+//                console.log("password field is visible: "+passwordfield);
 
-        const buttonvisible = await expect(page.locator('.waves-effect.waves-light.btn-large.btn-block.btn-bold.blue-btn.textTransform')).toBeVisible()
-        console.log("Login button field is visible: "+buttonvisible);
+//         const buttonvisible = await expect(page.locator('.waves-effect.waves-light.btn-large.btn-block.btn-bold.blue-btn.textTransform')).toBeVisible()
+//         console.log("Login button field is visible: "+buttonvisible);
 
-       });
+//        });
 
-    test('TC002 - Login Page - Fill in fields and click on the Login button', async () => {
-        await loginToNaukri(page);
-        const currentUrl = page.url();
-        console.log("Current URL:", currentUrl);
-        const viewProfileEle = page.locator('.view-profile-wrapper',{ waitUntil:'load', timeout:40000});
-        await viewProfileEle.waitFor({ state: 'visible', timeout: 10000 });
-        const viewProfileisVisible = await viewProfileEle.isVisible();
-        console.log("Profile is visible " + viewProfileisVisible);
-        if (viewProfileisVisible) {
-            console.log('Login successful and profile is visible');
-        } else {
-            console.log('Login failed or profile is not visible');
-        }
-    });
-});
+//     test('TC002 - Login Page - Fill in fields and click on the Login button', async () => {
+//         await loginToNaukri(page);
+//         const currentUrl = page.url();
+//         console.log("Current URL:", currentUrl);
+//         const viewProfileEle = page.locator('.view-profile-wrapper',{ waitUntil:'load', timeout:40000});
+//         await viewProfileEle.waitFor({ state: 'visible', timeout: 10000 });
+//         const viewProfileisVisible = await viewProfileEle.isVisible();
+//         console.log("Profile is visible " + viewProfileisVisible);
+//         if (viewProfileisVisible) {
+//             console.log('Login successful and profile is visible');
+//         } else {
+//             console.log('Login failed or profile is not visible');
+//         }
+//     });
+// });
