@@ -17,6 +17,8 @@ async function loginToNaukri(page) {
   //click login button
   await page.locator('button[type = "submit"]').click()
   console.log('login button is clicked')
+  await page.screenshot({ path: 'loginfunction.png' });
+
 }
 
 
@@ -26,10 +28,10 @@ test.describe('Update Profile in Naukri', () => {
       console.log("Launch Browser");
 
       await page.goto('https://www.naukri.com/', { timeout: 20000 });
-//const naukriTitle = page.locator('[title="Jobs - Recruitment - Job Search -  Employment - Job Vacancies - Naukri.com"]');
+      const naukriTitle = page.locator('[title="Jobs - Recruitment - Job Search -  Employment - Job Vacancies - Naukri.com"]');
 
-    // await naukriTitle.waitFor({ state: 'visible', timeout: 10000 })
-     // console.log("Naukri page is visible" + naukriTitle);
+      await naukriTitle.waitFor({ state: 'visible', timeout: 10000 })
+      console.log("Naukri page is visible" + naukriTitle);
 
       //click on the login button   
       const loginButton = page.locator('div #login_Layer');
@@ -37,7 +39,7 @@ test.describe('Update Profile in Naukri', () => {
       // Click the login button
       await loginButton.click();
       console.log("Login button clicked");
-
+      await page.screenshot({ path: 'beforeeach-login-page.png' });
     }
     catch (error) {
       console.error('Error during beforeEach setup:', error);
@@ -69,7 +71,7 @@ test.describe('Update Profile in Naukri', () => {
     const loginButton = page.locator('button[type = "submit"]')
     const loginButtonisvisible = await loginButton.isVisible()
     console.log("Login button is visible: " + loginButtonisvisible);
-
+          await page.screenshot({ path: 'TC001.png' });
 
   })
 
@@ -93,6 +95,7 @@ test.describe('Update Profile in Naukri', () => {
     } else {
       console.log('Login failed or profile is not visible');
     }
+          await page.screenshot({ path: 'TC002.png' });
 
 
   })
@@ -178,6 +181,7 @@ test.describe('Update Profile in Naukri', () => {
     await logoutButton.waitFor({ state: 'visible', timeout: 10000 })
     await logoutButton.click()
     console.log("Logged out successfully");
+          await page.screenshot({ path: 'TC003.png' });
 
   })
 
