@@ -26,23 +26,21 @@ console.log('email:', email);
   //click login button
   await page.locator('button[type = "submit"]').click()
   console.log('login button is clicked')
-
 }
-
 test.describe('Update Profile in Naukri', () => {
+  
 
-  test.beforeEach(async ({ page }) => {
-
-   // await page.goto('https://www.naukri.com/')
-    
-await page.goto('https://www.naukri.com/', { waitUntil: 'load', timeout: 30000 });
-
+  test.beforeEach(async ({ page }) => {   
+    try{
+await page.goto('https://www.naukri.com/', { waitUntil: 'load', timeout: 60000 });
     //click on the login button
     //await page.getByText('Login').click()
-   const login_button =  await page.locator('#login_Layer')
-   await login_button.waitFor({ state: 'visible', timeout: 10000 })
-   await login_button.click()
-    console.log('Login button is clicked');
+    await page.locator('#login_Layer').click()
+    }
+  catch(error){  
+    console.error('Error during beforeEach setup:', error);
+    throw error
+  }
   })
 
 
@@ -192,7 +190,6 @@ await page.goto('https://www.naukri.com/', { waitUntil: 'load', timeout: 30000 }
     
   })
 
-
-})
+  })
 
 
