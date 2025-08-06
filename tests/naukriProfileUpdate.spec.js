@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-//require('dotenv').config();
+require('dotenv').config();
 
 const email = process.env.NAUKRI_EMAIL;
 const password = process.env.NAUKRI_PASSWORD;
@@ -33,6 +33,9 @@ test.describe('Update Profile in Naukri', () => {
   test.beforeEach(async ({ page }) => {   
     try{
 await page.goto('https://www.naukri.com', { waitUntil: 'load', timeout: 60000 });
+const naukriTitle = await page.getByText('Find your dream job now').isVisible()
+console.log("Naukri page is visible" +naukriTitle);
+
     //click on the login button   
     const loginButton = page.locator('div #login_Layer');
     await loginButton.waitFor({ state: 'visible', timeout: 10000 });
