@@ -8,37 +8,28 @@ const resumeHeadlineWords = process.env.RESUME_HEADLINE_001;
 const resumeHeadlineWords1 = process.env.RESUME_HEADLINE_002;
 
 async function loginToNaukri(page) {
-
-  //functionality check
-  //fill the email input field
-  
-console.log('email:', email);
-
+  console.log("Login to Naukri function");
   await page.locator("[type='text'][placeholder='Enter your active Email ID / Username']").fill(email)
   console.log('email id is filled')
-
-
   //fill the password input field
   await page.locator("[placeholder='Enter your password']").fill(password)
   console.log('password is filled')
-
-
   //click login button
   await page.locator('button[type = "submit"]').click()
   console.log('login button is clicked')
 }
-test.describe('Update Profile in Naukri', () => {
-  
 
+
+test.describe('Update Profile in Naukri', () => {
   test.beforeEach(async ({ page }) => {   
     try{
-await page.goto('https://www.naukri.com', { waitUntil: 'load', timeout: 60000 });
-const naukriTitle = await page.getByText('Find your dream job now').isVisible()
+await page.goto('https://www.naukri.com', {timeout : 20000});
+const naukriTitle = await page.getByText('Find your dream job now').waitFor({state: 'visible', timeout: 10000})
 console.log("Naukri page is visible" +naukriTitle);
 
     //click on the login button   
     const loginButton = page.locator('div #login_Layer');
-    await loginButton.waitFor({ state: 'visible', timeout: 10000 });
+    await loginButton.waitFor({ state: 'visible', timeout: 20000 });
     // Click the login button
     await loginButton.click();
     console.log("Login button clicked");
@@ -75,33 +66,7 @@ console.log("Naukri page is visible" +naukriTitle);
     const loginButtonisvisible = await loginButton.isVisible()
     console.log("Login button is visible: " + loginButtonisvisible);
 
-    //functionality check
-    //fill the email input field
-    await page.locator("[type='text'][placeholder='Enter your active Email ID / Username']").fill('binushree1991@gmail.com')
-    console.log('email id is filled')
-
-
-    //fill the password input field
-    await page.locator("[placeholder='Enter your password']").fill('Aabhjs@1991')
-    console.log('password is filled')
-
-
-    //click login button
-    await page.locator('button[type = "submit"]').click()
-    console.log('login button is clicked')
-    //await page.waitForTimeout(2000);
-
-    //View Profile is visible successful
-    const viewProfileEle = page.locator('.view-profile-wrapper')
-    await viewProfileEle.waitFor({ state: 'visible', timeout: 10000 })
-    const viewProfileisVisible = await viewProfileEle.isVisible();
-    console.log("Profile is visible " + viewProfileisVisible);
-
-    if (viewProfileisVisible) {
-      console.log('Login successful and profile is visible');
-    } else {
-      console.log('Login failed or profile is not visible');
-    }
+    
   })
 
 
@@ -112,12 +77,20 @@ console.log("Naukri page is visible" +naukriTitle);
     await loginToNaukri(page)
     console.log("Login is successful");
 
+    
     //View Profile is visible successful
     const viewProfileEle = page.locator('.view-profile-wrapper')
     await viewProfileEle.waitFor({ state: 'visible', timeout: 10000 }) //wait till the page loads
-    // await viewProfileEle.isVisible();
-    console.log("View Profile is visible");
+    const viewProfileisVisible = await viewProfileEle.isVisible();
+    console.log("Profile is visible " + viewProfileisVisible);
 
+    if (viewProfileisVisible) {
+      console.log('Login successful and profile is visible');
+    } else {
+      console.log('Login failed or profile is not visible');
+    }
+
+    
   })
 
   test('TC003 - Home Page - Click Drawer Icon and click View & Update profile', async ({ page }) => {
@@ -128,10 +101,17 @@ console.log("Naukri page is visible" +naukriTitle);
     console.log("Login is successful");
 
     //View Profile is visible successful
-    const viewProfileEle = page.locator('.view-profile-wrapper')
+   const viewProfileEle = page.locator('.view-profile-wrapper')
     await viewProfileEle.waitFor({ state: 'visible', timeout: 10000 }) //wait till the page loads
-    // await viewProfileEle.isVisible();
-    console.log("View Profile is visible - TC3");
+    const viewProfileisVisible = await viewProfileEle.isVisible();
+    console.log("Profile is visible " + viewProfileisVisible);
+
+    if (viewProfileisVisible) {
+      console.log('Login successful and profile is visible');
+    } else {
+      console.log('Login failed or profile is not visible');
+    }
+
 
     //click on the update profile.
     const drawericon = page.locator('.nI-gNb-drawer__icon')
