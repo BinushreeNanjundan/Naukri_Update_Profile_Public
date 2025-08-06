@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-//require('dotenv').config();
+require('dotenv').config();
 
 const email = process.env.NAUKRI_EMAIL;
 const password = process.env.NAUKRI_PASSWORD;
@@ -38,7 +38,7 @@ test.describe('Update Profile in Naukri', () => {
 await page.goto('https://www.naukri.com/', { waitUntil: 'load', timeout: 60000 });
 
     //click on the login button
-    
+    //await page.getByText('Login').click()
     await page.locator('#login_Layer').click()
   })
 
