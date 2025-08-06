@@ -31,15 +31,17 @@ console.log('email:', email);
 
 test.describe('Update Profile in Naukri', () => {
 
-  test.beforeEach(async ({ page }) => {
-
-   // await page.goto('https://www.naukri.com/')
-    
+  test.beforeEach(async ({ page }) => {   
+    try{
 await page.goto('https://www.naukri.com/', { waitUntil: 'load', timeout: 60000 });
-
     //click on the login button
     //await page.getByText('Login').click()
     await page.locator('#login_Layer').click()
+    }
+  catch(error){  
+    console.error('Error during beforeEach setup:', error);
+    throw error
+  }
   })
 
 
