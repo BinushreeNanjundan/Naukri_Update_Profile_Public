@@ -1,5 +1,5 @@
 import { test, expect, chromium } from '@playwright/test';
-require('dotenv').config();
+//require('dotenv').config();
 
 let browser, context, page;
 const email = process.env.NAUKRI_EMAIL;
