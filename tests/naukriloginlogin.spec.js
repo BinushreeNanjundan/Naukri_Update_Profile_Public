@@ -16,7 +16,7 @@ async function loginToNaukri(page) {
 
 test.describe('Update Profile in Naukri', () => {
     test.beforeEach(async () => {
-        browser = await chromium.launch({ headless: false });
+        browser = await chromium.launch({ headless: true });
         context = await browser.newContext();
         page = await context.newPage();
         await page.goto('https://login.naukri.com/nLogin/Login.php', { waitUntil: 'load', timeout: 30000 });
