@@ -32,16 +32,14 @@ test.describe('Update Profile in Naukri', () => {
 
   test.beforeEach(async ({ page }) => {   
     try{
-await page.goto('https://www.naukri.com/nlogin/login', { waitUntil: 'load', timeout: 60000 });
-    // //click on the login button   
-    // const loginButton = page.locator('#login_Layer');
-    // await loginButton.waitFor({ state: 'visible', timeout: 10000 });
-
-    // // Click the login button
-    // await loginButton.click();
-    console.log("Login screen displayed");
+await page.goto('https://www.naukri.com', { waitUntil: 'load', timeout: 60000 });
+    //click on the login button   
+    const loginButton = page.locator('div #login_Layer');
+    await loginButton.waitFor({ state: 'visible', timeout: 10000 });
+    // Click the login button
+    await loginButton.click();
+    console.log("Login button clicked");
     
-
     }
   catch(error){  
     console.error('Error during beforeEach setup:', error);
