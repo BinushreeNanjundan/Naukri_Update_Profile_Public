@@ -40,10 +40,16 @@ test.describe('Update Profile in Naukri', () => {
           const currentUrl = page.url();
         console.log("Current URL:", currentUrl);
         //await expect(page.locator('.lbl', { hasText: 'Email ID / Username' })).toBeVisible();
-        await expect(page.locator('#usernameField')).toBeVisible();
+       const usernamefield = await expect(page.locator('#usernameField')).toBeVisible();
+       console.log("User name field is visible: "+usernamefield);
+       
         // await expect(page.locator('.lbl', { hasText: 'Password' })).toBeVisible();
-        await expect(page.locator('#passwordField')).toBeVisible();
-        await expect(page.locator('.waves-effect.waves-light.btn-large.btn-block.btn-bold.blue-btn.textTransform')).toBeVisible()
+        const passwordfield = await expect(page.locator('#passwordField')).toBeVisible();
+               console.log("password field is visible: "+passwordfield);
+
+        const buttonvisible = await expect(page.locator('.waves-effect.waves-light.btn-large.btn-block.btn-bold.blue-btn.textTransform')).toBeVisible()
+        console.log("Login button field is visible: "+buttonvisible);
+
        });
 
     test('TC002 - Login Page - Fill in fields and click on the Login button', async () => {
