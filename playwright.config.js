@@ -28,16 +28,17 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    headless: false,
+    headless: true,
     launchOptions: {
       args: [
         '--disable-blink-features = AutomationControlled']
     },
 
-
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64;x64) Chrome/120.0.0.0',
+    userAgent: 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36 Edg/138.0.0.0',
     javaScriptEnabled: true,
-    viewport: { width: 1280, height: 720 },
+     extraHTTPHeaders: {
+    'sec-ch-ua': '"Not.A;Brand";v="8", "Chromium";v="138"', 
+    },
 
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
