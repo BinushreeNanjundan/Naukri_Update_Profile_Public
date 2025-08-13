@@ -27,7 +27,7 @@ test.describe('Update Profile in Naukri', () => {
     try {
       console.log("Launch Browser");
 
-      await page.goto('https://www.naukri.com/', { timeout: 20000 });
+      await page.goto('https://www.naukri.com/');
       // const naukriTitle = page.locator('[title="Jobs - Recruitment - Job Search -  Employment - Job Vacancies - Naukri.com"]');
 
       // await naukriTitle.waitFor({ state: 'visible', timeout: 10000 })
