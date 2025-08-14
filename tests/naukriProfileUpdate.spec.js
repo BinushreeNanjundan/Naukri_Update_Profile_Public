@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-//require('dotenv').config();
+require('dotenv').config();
 
 const email = process.env.NAUKRI_EMAIL;
 const password = process.env.NAUKRI_PASSWORD;
@@ -107,16 +107,18 @@ test.describe('Update Profile in Naukri', () => {
     console.log("Login is successful");
 
     //View Profile is visible successful
-    const viewProfileEle = page.locator('.view-profile-wrapper')
-    await viewProfileEle.waitFor({ state: 'visible', timeout: 60000 }) //wait till the page loads
-    const viewProfileisVisible = await viewProfileEle.isVisible();
-    console.log("Profile is visible " + viewProfileisVisible);
-
-    if (viewProfileisVisible) {
-      console.log('Login successful and profile is visible');
-    } else {
-      console.log('Login failed or profile is not visible');
-    }
+    //const viewProfileEle = page.locator('.view-profile-wrapper')
+    //await viewProfileEle.waitFor({ state: 'visible', timeout: 60000 }) //wait till the page loads
+    
+    await page.waitForSelector('.view-profile-wrapper', { state: 'visible', timeout: 60000 });
+    //const viewProfileisVisible = await viewProfileEle.isVisible();
+   // console.log("Profile is visible " + viewProfileisVisible);
+console.log("Profile is visible")
+    // if (viewProfileisVisible) {
+    //   console.log('Login successful and profile is visible');
+    // } else {
+    //   console.log('Login failed or profile is not visible');
+    // }
     //click on the update profile.
     const drawericon = page.locator('.nI-gNb-drawer__icon')
     await drawericon.isVisible()
