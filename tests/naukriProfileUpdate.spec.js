@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-require('dotenv').config();
+//require('dotenv').config();
 
 const email = process.env.NAUKRI_EMAIL;
 const password = process.env.NAUKRI_PASSWORD;
