@@ -75,40 +75,40 @@ test.describe('Update Profile in Naukri', () => {
   })
 
 
-  test('TC002 - Login Page - Fill in fields and click on the Login button', async ({ page }) => {
+  // test('TC002 - Login Page - Fill in fields and click on the Login button', async ({ page }) => {
+  //   console.log("Testcase 2 is starting");
+
+  //   //call the login function created 
+  //   await loginToNaukri(page)
+  //   console.log("Login is successful");
+
+
+  //   //View Profile is visible successful
+  //   const viewProfileEle = page.locator('.view-profile-wrapper')
+  //   await viewProfileEle.waitFor({ state: 'visible', timeout: 50000 }) //wait till the page loads
+  //   const viewProfileisVisible = await viewProfileEle.isVisible();
+  //   console.log("Profile is visible " + viewProfileisVisible);
+
+  //   if (viewProfileisVisible) {
+  //     console.log('Login successful and profile is visible');
+  //   } else {
+  //     console.log('Login failed or profile is not visible');
+  //   }
+  //         await page.screenshot({ path: 'TC002.png' });
+
+
+  // })
+
+  test('TC002 - Home Page - Click Drawer Icon and click View & Update profile', async ({ page }) => {
     console.log("Testcase 2 is starting");
 
     //call the login function created 
     await loginToNaukri(page)
     console.log("Login is successful");
 
-
     //View Profile is visible successful
     const viewProfileEle = page.locator('.view-profile-wrapper')
-    //await viewProfileEle.waitFor({ state: 'visible', timeout: 50000 }) //wait till the page loads
-    const viewProfileisVisible = await viewProfileEle.isVisible();
-    console.log("Profile is visible " + viewProfileisVisible);
-
-    if (viewProfileisVisible) {
-      console.log('Login successful and profile is visible');
-    } else {
-      console.log('Login failed or profile is not visible');
-    }
-          await page.screenshot({ path: 'TC002.png' });
-
-
-  })
-
-  test('TC003 - Home Page - Click Drawer Icon and click View & Update profile', async ({ page }) => {
-    console.log("Testcase 3 is starting");
-
-    //call the login function created 
-    await loginToNaukri(page)
-    console.log("Login is successful");
-
-    //View Profile is visible successful
-    const viewProfileEle = page.locator('.view-profile-wrapper')
-    //await viewProfileEle.waitFor({ state: 'visible', timeout: 10000 }) //wait till the page loads
+    await viewProfileEle.waitFor({ state: 'visible', timeout: 15000 }) //wait till the page loads
     const viewProfileisVisible = await viewProfileEle.isVisible();
     console.log("Profile is visible " + viewProfileisVisible);
 
