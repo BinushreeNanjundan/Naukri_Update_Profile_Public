@@ -70,7 +70,7 @@ test.describe('Update Profile in Naukri', () => {
     const loginButton = page.locator('button[type = "submit"]')
     const loginButtonisvisible = await loginButton.isVisible()
     console.log("Login button is visible: " + loginButtonisvisible);
-          await page.screenshot({ path: 'TC001.png' });
+    await page.screenshot({ path: 'TC001.png' });
 
   })
 
@@ -108,7 +108,7 @@ test.describe('Update Profile in Naukri', () => {
 
     //View Profile is visible successful
     const viewProfileEle = page.locator('.view-profile-wrapper')
-    await viewProfileEle.waitFor({ state: 'visible', timeout: 15000 }) //wait till the page loads
+    await viewProfileEle.waitFor({ state: 'visible', timeout: 60000 }) //wait till the page loads
     const viewProfileisVisible = await viewProfileEle.isVisible();
     console.log("Profile is visible " + viewProfileisVisible);
 
@@ -117,31 +117,25 @@ test.describe('Update Profile in Naukri', () => {
     } else {
       console.log('Login failed or profile is not visible');
     }
-
-
     //click on the update profile.
     const drawericon = page.locator('.nI-gNb-drawer__icon')
     await drawericon.isVisible()
     await drawericon.click()
-
     console.log("DrawerIcon is visible");
-
     const viewUpdateProfileLocator = page.getByText("View & Update Profile");
     await viewUpdateProfileLocator.isVisible()
     await viewUpdateProfileLocator.click()
     console.log("View & Update Profile page is visible");
-
     const viewQuickLinks = page.getByText('Quick links')
-    //await viewQuickLinks.waitFor({ state: 'visible', timeout: 10000 })
+    await viewQuickLinks.waitFor({ state: 'visible', timeout: 60000 })
     console.log("Quick Link is visible");
     const editResumeheadline = page.locator('div[class="widgetHead"] span[class="edit icon"]')
-   await editResumeheadline.isVisible()
+    await editResumeheadline.isVisible()
     await editResumeheadline.click()
     console.log("Clicked on the edit button");
     const headline = page.locator('[name="resumeHeadlineForm"]')
     await headline.isVisible()
     console.log("Resume Headline window is displayed");
-
     const textarea = page.locator('#resumeHeadlineTxt')
     await textarea.click()
     console.log("Resume Headline textarea is now in the editable form");
@@ -161,7 +155,6 @@ test.describe('Update Profile in Naukri', () => {
 
     }
 
-
     //await textarea.fill(resumeHeadlineWords)
     console.log('Editing done with words')
     const saveButton = page.locator('button[class="btn-dark-ot"][type="submit"]')
@@ -169,20 +162,19 @@ test.describe('Update Profile in Naukri', () => {
     console.log('Resume Headline saved successfully')
 
     await expect(page.locator('.head').getByText('Success')).toBeVisible()
-
-    //await viewQuickLinks.waitFor({ state: 'visible', timeout: 10000 })
+    await viewQuickLinks.waitFor({ state: 'visible', timeout: 60000 })
     console.log("Quick Link is visible");
 
     //logout
-   // await drawericon.waitFor({ state: 'visible', timeout: 10000 })
+    await drawericon.waitFor({ state: 'visible', timeout: 60000 })
     await drawericon.click()
     const logoutButton = page.getByText('Logout')
     await logoutButton.isVisible()
     console.log("Logout button is visible");
-    //await logoutButton.waitFor({ state: 'visible', timeout: 10000 })
+    await logoutButton.waitFor({ state: 'visible', timeout: 60000 })
     await logoutButton.click()
     console.log("Logged out successfully");
-          await page.screenshot({ path: 'TC003.png' });
+    await page.screenshot({ path: 'TC003.png' });
 
   })
 
