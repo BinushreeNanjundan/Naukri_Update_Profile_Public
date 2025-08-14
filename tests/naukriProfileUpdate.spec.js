@@ -32,7 +32,8 @@ test.describe('Update Profile in Naukri', () => {
 
       // await naukriTitle.waitFor({ state: 'visible', timeout: 10000 })
       // console.log("Naukri page is visible" + naukriTitle);
-
+      const currentURL = page.url()
+      console.log("Current URL is: " + currentURL);
       //click on the login button   
       const loginButton = page.locator('#login_Layer');
       await loginButton.waitFor({ state: 'visible', timeout: 20000 });
