@@ -36,7 +36,7 @@ test.describe('Update Profile in Naukri', () => {
       console.log("Current URL is: " + currentURL);
       //click on the login button   
       const loginButton = page.locator('#login_Layer');
-      await loginButton.waitFor({ state: 'visible', timeout: 60000 });
+      await loginButton.waitFor({ state: 'visible', timeout: 20000 });
       // Click the login button
       await loginButton.click();
       console.log("Login button clicked");
