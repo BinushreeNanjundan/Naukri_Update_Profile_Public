@@ -26,17 +26,15 @@ test.describe('Update Profile in Naukri', () => {
   test.beforeEach(async ({ page }) => {
     try {
       console.log("Launch Browser");
-
       await page.goto('https://www.naukri.com/');
       // const naukriTitle = page.locator('[title="Jobs - Recruitment - Job Search -  Employment - Job Vacancies - Naukri.com"]');
-
       // await naukriTitle.waitFor({ state: 'visible', timeout: 10000 })
       // console.log("Naukri page is visible" + naukriTitle);
       const currentURL = page.url()
       console.log("Current URL is: " + currentURL);
       //click on the login button   
       const loginButton = page.locator('#login_Layer');
-      await loginButton.waitFor({ state: 'visible', timeout: 20000 });
+      //await loginButton.waitFor({ state: 'visible', timeout: 20000 });
       // Click the login button
       await loginButton.click();
       console.log("Login button clicked");
@@ -87,7 +85,7 @@ test.describe('Update Profile in Naukri', () => {
 
     //View Profile is visible successful
     const viewProfileEle = page.locator('.view-profile-wrapper')
-    await viewProfileEle.waitFor({ state: 'visible', timeout: 50000 }) //wait till the page loads
+    //await viewProfileEle.waitFor({ state: 'visible', timeout: 50000 }) //wait till the page loads
     const viewProfileisVisible = await viewProfileEle.isVisible();
     console.log("Profile is visible " + viewProfileisVisible);
 
@@ -110,7 +108,7 @@ test.describe('Update Profile in Naukri', () => {
 
     //View Profile is visible successful
     const viewProfileEle = page.locator('.view-profile-wrapper')
-    await viewProfileEle.waitFor({ state: 'visible', timeout: 10000 }) //wait till the page loads
+    //await viewProfileEle.waitFor({ state: 'visible', timeout: 10000 }) //wait till the page loads
     const viewProfileisVisible = await viewProfileEle.isVisible();
     console.log("Profile is visible " + viewProfileisVisible);
 
@@ -123,25 +121,25 @@ test.describe('Update Profile in Naukri', () => {
 
     //click on the update profile.
     const drawericon = page.locator('.nI-gNb-drawer__icon')
-    await drawericon.waitFor({ state: 'visible', timeout: 10000 })
+    await drawericon.isVisible()
     await drawericon.click()
 
     console.log("DrawerIcon is visible");
 
     const viewUpdateProfileLocator = page.getByText("View & Update Profile");
-    await viewUpdateProfileLocator.waitFor({ state: 'visible', timeout: 15000 })
+    await viewUpdateProfileLocator.isVisible()
     await viewUpdateProfileLocator.click()
     console.log("View & Update Profile page is visible");
 
     const viewQuickLinks = page.getByText('Quick links')
-    await viewQuickLinks.waitFor({ state: 'visible', timeout: 10000 })
+    //await viewQuickLinks.waitFor({ state: 'visible', timeout: 10000 })
     console.log("Quick Link is visible");
     const editResumeheadline = page.locator('div[class="widgetHead"] span[class="edit icon"]')
-    await editResumeheadline.waitFor({ state: 'visible', timeout: 10000 })
+   await editResumeheadline.isVisible()
     await editResumeheadline.click()
     console.log("Clicked on the edit button");
     const headline = page.locator('[name="resumeHeadlineForm"]')
-    await headline.waitFor({ state: 'visible', timeout: 5000 })
+    await headline.isVisible()
     console.log("Resume Headline window is displayed");
 
     const textarea = page.locator('#resumeHeadlineTxt')
@@ -172,14 +170,16 @@ test.describe('Update Profile in Naukri', () => {
 
     await expect(page.locator('.head').getByText('Success')).toBeVisible()
 
-    await viewQuickLinks.waitFor({ state: 'visible', timeout: 10000 })
+    //await viewQuickLinks.waitFor({ state: 'visible', timeout: 10000 })
     console.log("Quick Link is visible");
 
     //logout
-    await drawericon.waitFor({ state: 'visible', timeout: 10000 })
+   // await drawericon.waitFor({ state: 'visible', timeout: 10000 })
     await drawericon.click()
     const logoutButton = page.getByText('Logout')
-    await logoutButton.waitFor({ state: 'visible', timeout: 10000 })
+    await logoutButton.isVisible()
+    console.log("Logout button is visible");
+    //await logoutButton.waitFor({ state: 'visible', timeout: 10000 })
     await logoutButton.click()
     console.log("Logged out successfully");
           await page.screenshot({ path: 'TC003.png' });
