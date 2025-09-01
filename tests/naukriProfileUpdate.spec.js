@@ -8,6 +8,7 @@ const resumeHeadlineWords = process.env.RESUME_HEADLINE_001;
 const resumeHeadlineWords1 = process.env.RESUME_HEADLINE_002;
 
 async function loginToNaukri(page) {
+  //comment
   console.log("Login to Naukri function");
   await page.locator("[type='text'][placeholder='Enter your active Email ID / Username']").fill(email)
   console.log('email id is filled:' + email)
@@ -27,14 +28,14 @@ test.describe('Update Profile in Naukri', () => {
     try {
       console.log("Launch Browser");
       await page.goto('https://www.naukri.com/');
-      // const naukriTitle = page.locator('[title="Jobs - Recruitment - Job Search -  Employment - Job Vacancies - Naukri.com"]');
-      // await naukriTitle.waitFor({ state: 'visible', timeout: 10000 })
-      // console.log("Naukri page is visible" + naukriTitle);
+      const naukriTitle = page.locator('.qsb-title');
+      expect(naukriTitle).toHaveText(/^Find*/)
+      console.log("Naukri page is visible: " + await naukriTitle.innerText());
+
       const currentURL = page.url()
       console.log("Current URL is: " + currentURL);
       //click on the login button   
       const loginButton = page.locator('#login_Layer');
-      //await loginButton.waitFor({ state: 'visible', timeout: 20000 });
       // Click the login button
       await loginButton.click();
       console.log("Login button clicked");
@@ -75,29 +76,6 @@ test.describe('Update Profile in Naukri', () => {
   })
 
 
-  // test('TC002 - Login Page - Fill in fields and click on the Login button', async ({ page }) => {
-  //   console.log("Testcase 2 is starting");
-
-  //   //call the login function created 
-  //   await loginToNaukri(page)
-  //   console.log("Login is successful");
-
-
-  //   //View Profile is visible successful
-  //   const viewProfileEle = page.locator('.view-profile-wrapper')
-  //   await viewProfileEle.waitFor({ state: 'visible', timeout: 50000 }) //wait till the page loads
-  //   const viewProfileisVisible = await viewProfileEle.isVisible();
-  //   console.log("Profile is visible " + viewProfileisVisible);
-
-  //   if (viewProfileisVisible) {
-  //     console.log('Login successful and profile is visible');
-  //   } else {
-  //     console.log('Login failed or profile is not visible');
-  //   }
-  //         await page.screenshot({ path: 'TC002.png' });
-
-
-  // })
 
   test('TC002 - Home Page - Click Drawer Icon and click View & Update profile', async ({ page }) => {
     console.log("Testcase 2 is starting");
@@ -107,18 +85,17 @@ test.describe('Update Profile in Naukri', () => {
     console.log("Login is successful");
 
     //View Profile is visible successful
-    //const viewProfileEle = page.locator('.view-profile-wrapper')
-    //await viewProfileEle.waitFor({ state: 'visible', timeout: 60000 }) //wait till the page loads
+    const viewProfileEle = page.locator('.view-profile-wrapper')
+    await viewProfileEle.waitFor({ state: 'visible', timeout: 60000 }) //wait till the page loads
     
     await page.waitForSelector('.view-profile-wrapper', { state: 'visible', timeout: 60000 });
-    //const viewProfileisVisible = await viewProfileEle.isVisible();
-   // console.log("Profile is visible " + viewProfileisVisible);
-console.log("Profile is visible")
-    // if (viewProfileisVisible) {
-    //   console.log('Login successful and profile is visible');
-    // } else {
-    //   console.log('Login failed or profile is not visible');
-    // }
+    const viewProfileisVisible = await viewProfileEle.isVisible();
+    console.log("Profile is visible " + viewProfileisVisible);
+    if (viewProfileisVisible) {
+      console.log('Login successful and profile is visible');
+    } else {
+      console.log('Login failed or profile is not visible');
+    }
     //click on the update profile.
     const drawericon = page.locator('.nI-gNb-drawer__icon')
     await drawericon.isVisible()
@@ -141,9 +118,7 @@ console.log("Profile is visible")
     const textarea = page.locator('#resumeHeadlineTxt')
     await textarea.click()
     console.log("Resume Headline textarea is now in the editable form");
-    //var resumeHeadlineWords = 'Senior QA Analyst with 14 years of experience in Functional Testing. Have worked in web application testing, automation using Cypress/Playwright with BDD framework,manual testing, regression testing, API testing and Teamcity for cicd process.'
-    //var resumeHeadlineWords1 = 'Senior QA Analyst with 14 years of experience in Functional Testing. Have worked in automation using Cypress/Playwright with BDD framework,manual testing, regression testing, API testing and Teamcity for cicd process.'
-    const value = await textarea.inputValue();
+  const value = await textarea.inputValue();
     if (value === resumeHeadlineWords) {
       console.log("Words before update: " + value)
       await textarea.fill(resumeHeadlineWords1);
